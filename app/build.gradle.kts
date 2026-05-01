@@ -3,6 +3,9 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     id("com.google.devtools.ksp")
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
+
 }
 
 android {
@@ -57,6 +60,10 @@ dependencies {
 
     // Add dataStore preferences dependency
     implementation(libs.androidx.datastore.preferences)
+
+    //Add hilt
+    implementation(libs.dagger.hilt.android)
+    ksp(libs.dagger.hilt.android.compiler)
 
 
     testImplementation(libs.junit)

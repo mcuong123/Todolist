@@ -5,6 +5,8 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.todolist.database.dao.TodoDao
 import com.example.todolist.database.entity.TodoCollection
 import com.example.todolist.database.entity.TodoEntity
@@ -35,7 +37,14 @@ abstract class AppDb(): RoomDatabase() {
             context,
             AppDb::class.java,
             DATABASE_NAME
-        ).build()
+        ).addMigrations(MIGRATION_1_2).build()
 }
 
 }
+private val MIGRATION_1_2 = object : Migration(1, 2) {
+    override fun migrate(db: SupportSQLiteDatabase) {
+        db.execSQL("ALTER TABLE todo_entity ADD COLUMN sort_type INTEGER NOT NULL DEFAULT 0")
+    }
+
+}
+
