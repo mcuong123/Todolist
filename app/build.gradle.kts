@@ -65,6 +65,12 @@ dependencies {
     implementation(libs.dagger.hilt.android)
     ksp(libs.dagger.hilt.android.compiler)
 
+    implementation(libs.androidx.hilt.navigation.compose)
+
+    implementation(libs.airbnb.android.lottie.compose)
+
+    implementation(libs.androidx.navigation.compose)
+    implementation("androidx.compose.material:material-icons-extended")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
