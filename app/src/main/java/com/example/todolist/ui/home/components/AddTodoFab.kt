@@ -1,4 +1,4 @@
-package com.example.todolist.ui.screen.home.components
+package com.example.todolist.ui.home.components
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
