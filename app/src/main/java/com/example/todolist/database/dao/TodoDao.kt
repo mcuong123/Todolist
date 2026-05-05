@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
+import com.example.todolist.database.entity.SortType
 import com.example.todolist.database.entity.TodoCollection
 import com.example.todolist.database.entity.TodoEntity
 
@@ -18,16 +19,16 @@ interface TodoDao {
     suspend fun insertTodoCollection(todoCollection: TodoCollection):Long
 
     @Query("SELECT * FROM todo_entity WHERE collection_id = :collectionId")
-    suspend fun getTodos(collectionId: Long): List<TodoEntity>
+    suspend fun getTodos(collectionId: Long?): List<TodoEntity>
 
     @Query("SELECT * FROM todo_collection ")
     suspend fun getTodoCollection(): List<TodoCollection>
 
 @Query("UPDATE todo_entity SET is_completed = :isCompleted WHERE id = :id")
-suspend fun updateTodoCompleted(id: Long, isCompleted: Boolean) : Int
+suspend fun updateTodoCompleted(id: Long?, isCompleted: Boolean) : Int
 
 @Query("UPDATE todo_entity SET is_favorite = :isFavorite WHERE id = :id")
-suspend fun updateTodoFavorite(id: Long, isFavorite: Boolean): Int
+suspend fun updateTodoFavorite(id: Long?, isFavorite: Boolean): Int
 
 @Query("UPDATE todo_collection SET title = :title WHERE id = :id")
 suspend fun updateTodoCollection(id: Long, title: String): Int
@@ -50,7 +51,7 @@ suspend fun deleteTodoCollection(todoCollection: TodoCollection): Int
 
 
 @Query("UPDATE todo_collection SET sort_type = :sortType WHERE id = :collectionId")
-suspend fun updateTodoCollectionSortType(collectionId: Long, sortType: Int): Int
+suspend fun updateTodoCollectionSortType(collectionId: Long?, sortType: SortType): Int
 
 }
 

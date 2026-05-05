@@ -15,7 +15,7 @@ data class TodoEntity(
     @ColumnInfo(name = "is_favorite")
     val isFavorite: Boolean,
     @ColumnInfo(name = "collection_id")
-   val collectionId: Long,
+    val collectionId: Long?,
     @ColumnInfo(name = "updated_at")
     val updatedAt: Long,
     @ColumnInfo(name = "created_at")

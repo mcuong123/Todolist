@@ -12,5 +12,5 @@ interface TodoDelegate {
     fun addNewCollection(title: String) = Unit
     fun requestAddNewCollection(): Unit = Unit
     fun requestUpdateCollection(collectionId: Long) = Unit
-    fun requestSortTodo(collectionId: Long) = Unit
+    fun requestSortTodo(collectionId: Long?) = Unit
 }

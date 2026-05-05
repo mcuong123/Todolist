@@ -12,7 +12,7 @@ data class TodoUiState(
     val isCompleted: Boolean,
     val createdAt: Long,
     val updatedAt: Long,
-    val collectionId: Long,
+    val collectionId: Long?,
     val stringUpdateAt: String
 )
 

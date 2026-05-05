@@ -18,7 +18,7 @@ private const val DATABASE_VERSION = 1
 @Database(
     entities = [TodoEntity::class, TodoCollection::class],
     version = DATABASE_VERSION,
-    exportSchema = true
+    exportSchema = false
 )
 abstract class AppDb(): RoomDatabase() {
     abstract fun todoDao(): TodoDao

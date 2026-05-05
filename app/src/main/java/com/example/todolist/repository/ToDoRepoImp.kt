@@ -5,7 +5,6 @@ import com.example.todolist.database.dao.TodoDao
 import com.example.todolist.database.entity.SortType
 import com.example.todolist.database.entity.TodoCollection
 import com.example.todolist.database.entity.TodoEntity
-import com.example.todolist.repository.TodoRepo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -13,7 +12,7 @@ class ToDoRepoImp(private val todoDao: TodoDao) : TodoRepo {
 
     override suspend fun addTodo(
         title: String,
-        collectionId: Long
+        collectionId: Long?
     ): TodoEntity? = withContext(Dispatchers.IO) {
         val now = Calendar.getInstance().timeInMillis
         val todo = TodoEntity(
@@ -33,7 +32,7 @@ class ToDoRepoImp(private val todoDao: TodoDao) : TodoRepo {
     }
 
     override suspend fun updateTodoFavorite(
-        id: Long,
+        id: Long?,
         isFavorite: Boolean
     ): Boolean = withContext(Dispatchers.IO) {
        todoDao.updateTodoFavorite(id, isFavorite) > 0
@@ -68,14 +67,14 @@ class ToDoRepoImp(private val todoDao: TodoDao) : TodoRepo {
         todoDao.getTodoCollection()
     }
 
-    override suspend fun getTodos(collectionId: Long): List<TodoEntity> =
+    override suspend fun getTodos(collectionId: Long?): List<TodoEntity> =
         withContext(Dispatchers.IO) {
             todoDao.getTodos(collectionId)
         }
 
     override suspend fun updateCollectionSortType(
-        collectionId: Long,
-        sortType: Int
+        collectionId: Long?,
+        sortType: SortType
     ): Boolean {
        return withContext(Dispatchers.IO) {
            todoDao.updateTodoCollectionSortType(collectionId, sortType) > 0
@@ -91,7 +90,7 @@ class ToDoRepoImp(private val todoDao: TodoDao) : TodoRepo {
     }
 
     override suspend fun updateTodoCompleted(
-        id: Long,
+        id: Long?,
         isCompleted: Boolean
     ) = withContext(Dispatchers.IO) {
         todoDao.updateTodoCompleted(id, isCompleted) > 0
